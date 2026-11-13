@@ -1,26 +1,84 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+@theme {
+  /* Variáveis Padrão (Light Mode) */
+  --color-background: hsl(0 0% 100%);
+  --color-foreground: hsl(222 47% 11%);
+  --color-card: hsl(0 0% 100%);
+  --color-card-foreground: hsl(222 47% 11%);
+  --color-primary: hsl(222 47% 15%);
+  --color-primary-foreground: hsl(45 93% 58%);
+  --color-secondary: hsl(45 93% 58%);
+  --color-secondary-foreground: hsl(222 47% 11%);
+  --color-muted: hsl(220 20% 95%);
+  --color-muted-foreground: hsl(222 30% 40%);
+
+  --color-accent: hsl(45 93% 58%);
+  --color-accent-foreground: hsl(222 47% 11%);
+  --color-popover: hsl(0 0% 100%);
+  --color-popover-foreground: hsl(222 47% 11%);
+
+  --color-destructive: hsl(0 84% 60%);
+  --color-destructive-foreground: hsl(0 0% 100%);
+
+  --color-border: hsl(220 20% 88%);
+  --color-input: hsl(220 20% 88%);
+  --color-ring: hsl(45 93% 58%);
+  
+  --color-navy: hsl(222 47% 15%);
+  --color-gold: hsl(45 93% 58%);
+  --color-navy-light: hsl(222 40% 25%);
+  --color-navy-dark: hsl(222 50% 10%);
+  --color-gold: hsl(45 93% 58%);
+  --color-gold-light: hsl(45 90% 70%);
+  --color-gold-dark: hsl(45 85% 45%);
+  --color-cream: hsl(45 30% 96%);
+
+  --radius-lg: 0.5rem;
+
+  --shadow-gold: 0 10px 40px -10px hsl(45 93% 58% / 0.3);
+  --shadow-celestial: 0 25px 60px -15px hsl(222 47% 15% / 0.25);
+
+  --color-sidebar-background: hsl(222 47% 15%);
+  --color-sidebar-foreground: hsl(0 0% 100%);
+  --color-sidebar-primary: hsl(45 93% 58%);
+  --color-sidebar-primary-foreground: hsl(222 47% 11%);
+  --color-sidebar-accent: hsl(222 40% 25%);
+  --color-sidebar-accent-foreground: hsl(0 0% 100%);
+  --color-sidebar-border: hsl(222 40% 25%);
+  --color-sidebar-ring: hsl(45 93% 58%);
+
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+/* PARA O DARK MODE: 
+   Na v4, você sobrescreve as variáveis CSS dentro do seletor .dark, 
+   mas FORA do bloco @theme. 
+*/
+@layer base {
+  .dark {
+    --color-background: hsl(222 50% 8%);
+    --color-foreground: hsl(0 0% 98%);
+    --color-card: hsl(222 47% 12%);
+    --color-card-foreground: hsl(0 0% 98%);
+    --color-primary: hsl(45 93% 58%);
+    --color-primary-foreground: hsl(222 47% 11%);
+    --color-secondary: hsl(222 40% 20%);
+    --color-secondary-foreground: hsl(0 0% 98%);
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+@layer base {
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-serif;
+  }
+}
+
+@layer utilities {
+  .text-gradient-gold {
+    @apply bg-clip-text text-transparent;
+    background-image: linear-gradient(135deg, hsl(45 93% 58%) 0%, hsl(45 85% 45%) 100%);
+  }
 }
