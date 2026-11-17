@@ -1,5 +1,7 @@
 "use client";
 import { createContext, useContext, useState, useEffect, ReactNode } from "react";
+import { API_URL } from "@/lib/api";
+
 
 interface AuthContextType {
   isLoggedIn: boolean;
@@ -18,7 +20,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     const checkLogin = async () => {
       try {
         // ✅ rota de checagem de login, não login
-        const res = await fetch("http://localhost:3333/auth/me", {
+        const res = await fetch(`${API_URL}/auth/me`, {
           method: "GET",
           credentials: "include",
         });
